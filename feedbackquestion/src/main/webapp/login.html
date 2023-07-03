@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>login</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+</head>
+<body>
+
+	Username:
+	<input type="text" name="username" id="username"> Password:
+	<input type="password" name="password" id="password">
+	<input type="submit" value="Signin" id="adminlogin" />
+	<br>
+	<br>
+	<a href="home.html">back</a>
+	<script>
+$(document).ready(function() {
+  $("#adminlogin").click(function() {
+ 
+    var formData = {
+      username: $('#username').val(),
+      password: $('#password').val()
+    };
+	alert(JSON.stringify(formData));
+	
+    $.ajax({
+      type: 'post',
+      url: 'admin/signIn',
+      datatype:'text',
+      data: {
+          username: $('#username').val(),
+          password: $('#password').val()
+        },
+      contenttype: "application/json",
+      success: function(data) {
+    	  location.href=data;
+      },
+      error: function(error) {
+        
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
